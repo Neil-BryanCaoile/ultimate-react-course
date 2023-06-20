@@ -1,3 +1,10 @@
+/* 
+  Essential Javascript for React
+   -Destructuring Object{} and Array[]
+   -Rest/Spread Operator 
+   -Template Literals
+*/
+
 const data = [
   {
     id: 1,
@@ -142,3 +149,55 @@ function getBooks() {
 function getBook(id) {
   return data.find((d) => d.id === id);
 }
+
+// *********************************************************************************************************
+// TOPIC: OBJECT {} Destructuring
+const book = getBook(2); // book obj
+//    ~I destructure book object getting all of its contents, the contents will become variable..
+const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
+  book;
+console.log(title);
+console.log(author);
+console.log(pages);
+console.log(publicationDate);
+console.log(genres); //this is an array.
+console.log(hasMovieAdaptation);
+
+// *********************************************************************************************************
+// TOPIC: ARRAY [] Destructuring
+//    ~ Same way I destructured object but using [] for Arrays
+const [primaryGenre, secondaryGenre] = genres; //destructure Array
+console.log(primaryGenre, secondaryGenre); //print
+
+// *********************************************************************************************************
+// TOPIC: REST(...) operrator
+//   ~ rest operator can only be put in the end of destructuring array
+const [primaryGenre_, secondaryGenre_, ...otherGenres] = genres;
+console.log(otherGenres); //Is an array of leftover items
+console.log(primaryGenre, secondaryGenre, otherGenres);
+
+// TOPIC:  SPREA
+const updateBook = {};
+
+// TOPIC: Ternaries of if/else Statements
+const pagesRange =
+  pages > 1000 ? `over a thousand: (${pages})` : `less than 1000: (${pages})`;
+console.log(`The book has ${pagesRange} pages.`);
+/**
+- React often requires defining values based on conditions, especially when if-else statements are not suitable.
+- The ternary operator in JavaScript has three parts: condition, value if true, and value if false.
+- The condition is followed by a question mark, the true value, and a colon separating the true and false values.
+- The ternary operator returns a value based on the condition evaluation: the second operand if true, and the third operand if false.
+- The result of the ternary operator can be assigned to a variable and used in further operations or displayed.
+- Template literals can be used with the ternary operator to create dynamic strings based on conditions.
+- The ternary operator is valuable because it returns a value, unlike if-else statements which do not.
+- Understanding and using the ternary operator is crucial in React development for conditional variable assignment and dynamic string creation.
+- The ternary operator provides a concise and efficient way to handle conditional operations in JavaScript and React.
+ */
+
+// TOPIC: ArrowFunctions
+function getYear(str) {
+  return str.split("-")[0];
+}
+(str) => str.split("")[0];
+console.log(getYear(publicationDate));
